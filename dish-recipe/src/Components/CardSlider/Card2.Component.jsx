@@ -30,7 +30,7 @@ const Card2 = () => {
         </div>
         <div className="mx-auto mt-5 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
           {/* Card 1 */}
-          <div className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+          <div className="card flex flex-col overflow-hidden rounded-lg shadow-lg">
             <div className="flex-shrink-0">
               <img
                 className="h-48 w-full object-cover"
@@ -80,7 +80,7 @@ const Card2 = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+          <div className="card flex flex-col overflow-hidden rounded-lg shadow-lg">
             <div className="flex-shrink-0">
               <img
                 className="h-48 w-full object-cover"
@@ -136,7 +136,7 @@ const Card2 = () => {
           </div>
 
           {/* Card 3 */}
-          <div className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+          <div className="card flex flex-col overflow-hidden rounded-lg shadow-lg">
             <div className="flex-shrink-0">
               <img className="h-48 w-full object-cover" src={card2_3} alt="" />
             </div>

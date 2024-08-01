@@ -6,11 +6,13 @@ import Signup from './Components/Pages/Signup.Component';
 import Login from './Components/Pages/Login.Component';
 
 
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomePage from './Components/Pages/HomePage';
+import axios from 'axios';
 
-
+axios.defaults.baseURL = "http://localhost:8000"
 
 function App() {
   

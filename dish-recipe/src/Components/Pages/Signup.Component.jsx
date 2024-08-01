@@ -1,8 +1,19 @@
 import { useState } from "react";
 import React from "react";
 import Login from "./Login.Component";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
+
+  const [data, setData] = useState({
+    username:'',
+    email:'',
+    password:'',
+    confpassword:'',
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [action, setAction] = useState("Sign Up");
   const [showLogin, setShowLogin] = useState(false);
 
@@ -12,6 +23,32 @@ const Signup = () => {
 
   const handleSwitchToSignup = () => {
     setShowLogin(false);
+  };
+  const handleform = (e) => {
+
+    e.preventDefault();
+    const { username, email, password, confpassword } = data;
+
+    if (password !== confpassword) {
+     alert("Passwords does not match");
+      return;
+    }
+    
+
+    if (username === "") {
+      alert("Username must not empty!");
+      return;
+    }
+   
+
+    if (email === "") {
+      alert("Email must not empty!");
+      return;
+    }
+
+    const formData = new FormData(e.target);
+    const obj = Object.fromEntries(formData.entries());
+    console.log(obj);
   };
 
   return (
@@ -30,15 +67,13 @@ const Signup = () => {
                 href="/login"
                 onClick={handleSwitchToLogin}
                 class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150"
-              >
-                login
-              </a>
+              >Login</a>
             </p>
           </div>
 
           <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-              <form method="POST" action="#">
+              <form method="POST" action="#" onSubmit={handleform}>
                 <div>
                   <label
                     for="email"
@@ -50,6 +85,8 @@ const Signup = () => {
                     <input
                       id="name"
                       name="username"
+                      value={data.username}
+                      onChange={(e) => setData({...data, username: e.target.value})}
                       placeholder="John Doe"
                       type="text"
                       required=""
@@ -82,6 +119,8 @@ const Signup = () => {
                     <input
                       id="email"
                       name="email"
+                      value={data.email}
+                      onChange={(e) => setData({...data, email: e.target.value})}
                       placeholder="user@example.com"
                       type="email"
                       required=""
@@ -110,14 +149,22 @@ const Signup = () => {
                   >
                     Password
                   </label>
-                  <div class="mt-1 rounded-md shadow-sm">
+                  <div class="mt-1 rounded-md shadow-sm flex  border border-gray-300  placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                     <input
                       id="password"
                       name="password"
-                      type="password"
+                      value={data.password}
+                      onChange={(e) => setData({...data, password: e.target.value})}
+                      type={showPassword ? "text" : "password"}
                       required=""
-                      class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      className="appearance-none block w-full px-3 py-2 rounded-md"
                     />
+                    <div
+                      className="p-2 mt-1"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </div>
                   </div>
                 </div>
 
@@ -128,14 +175,22 @@ const Signup = () => {
                   >
                     Confirm Password
                   </label>
-                  <div class="mt-1 rounded-md shadow-sm">
+                  <div class="mt-1 rounded-md flex shadow-sm border border-gray-300  placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                     <input
                       id="password_confirmation"
                       name="password_confirmation"
-                      type="password"
+                      value={data.confpassword}
+                      onChange={(e) => setData({...data, confpassword: e.target.value})}
+                      type={showConfirmPassword ? "text" : "password"}
                       required=""
-                      class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                      class="appearance-none block w-full px-3 py-2 rounded-md"
                     />
+                    <div
+                      className="p-2 mt-1"
+                      onClick={() =>setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                      {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+                    </div>
                   </div>
                 </div>
 

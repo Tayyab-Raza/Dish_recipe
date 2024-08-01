@@ -36,6 +36,12 @@
     transform: rotate(360deg);
   }
 } */
+ .card{
+  transition: all 0.3s ease-in-out;
+ }
+ .card:hover{
+  transform: translateY(-15px);
+ }
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
